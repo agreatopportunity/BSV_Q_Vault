@@ -27,8 +27,8 @@ const PORT = process.env.PORT || 3000;
 const WOC_BASE = 'https://api.whatsonchain.com/v1/bsv/main';
 const TAAL_URL = 'https://api.taal.com/api/v1/broadcast';
 const TAAL_KEYS = [
-    'mainnet_3b1bf0f0d550275f1ba8676c1e224fc1',
-    'mainnet_7bf481e9cd46f48c44a71de1b326bea4'
+    'mainnet_GET_A_KEY_PLACE_HERE',
+    'mainnet_GET_A_KEY_PLACE_HERE'
 ];
 
 // Middleware
