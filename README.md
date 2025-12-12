@@ -1,4 +1,4 @@
-# BSV Quantum Vault ⚛️
+# Quantum Bitcoin Vault ⚛️
 
 A quantum-resistant vault for Bitcoin SV using SHA256 hash-lock (P2SH) technology.
 
