@@ -1,4 +1,4 @@
-              # 🔐 BSV Quantum Vault
+# 🔐 BSV Quantum Vault v4.0
 
 **Quantum-Resistant Bitcoin Storage using Winternitz One-Time Signatures**
 
@@ -6,12 +6,23 @@
 
 ![BSV](https://img.shields.io/badge/BSV-Mainnet-orange)
 ![Security](https://img.shields.io/badge/Security-Quantum%20Resistant-green)
+![Version](https://img.shields.io/badge/Version-4.0-blue)
 ![License](https://img.shields.io/badge/License-MIT-blue)
+
+## 🆕 What's New in v4.0
+
+- **⏰ Time-Locked Vaults**: Lock funds until a specific date or block height
+- **🛡️ Full Winternitz Mode**: Complete on-chain signature verification with transaction binding
+- **🚫 Front-Run Immunity**: Maximum security makes transaction modification mathematically impossible
+- **📊 Security Levels**: Choose between Standard, Enhanced, or Maximum protection
 
 ---
 
 ## 📋 Table of Contents
 
+- [What's New in v4.0](#-whats-new-in-v40)
+- [Security Levels Explained](#-security-levels-explained)
+- [Time-Locked Vaults](#-time-locked-vaults)
 - [Why Quantum Resistance Matters](#-why-quantum-resistance-matters)
 - [How Winternitz Signatures Work](#-how-winternitz-signatures-work)
 - [Security Model](#-security-model)
@@ -19,6 +30,101 @@
 - [Usage Guide](#-usage-guide)
 - [Technical Details](#-technical-details)
 - [FAQ](#-faq)
+
+---
+
+## 🛡️ Security Levels Explained
+
+BSV Quantum Vault v4.0 offers three security levels to match your needs:
+
+### Standard Security ⚡
+```
+Script: OP_SHA256 <hash> OP_EQUAL
+Size: ~35 bytes | Fee: ~35 sats
+```
+- **Quantum-resistant storage** ✓
+- Simple preimage verification
+- Lowest transaction fees
+- Best for: Regular usage, smaller amounts
+
+### Enhanced Security 🔐
+```
+Script: [TIMELOCK] OP_SHA256 <hash> OP_EQUAL
+Size: ~45 bytes | Fee: ~45 sats
+```
+- Everything in Standard, plus:
+- **Optional time-lock** for funds
+- Perfect for scheduled unlocks
+- Best for: Inheritance, vesting, forced HODL
+
+### Maximum Security 🛡️
+```
+Script: Full Winternitz verification with transaction binding
+Size: ~3KB | Fee: ~3000 sats
+```
+- **Complete front-run immunity** ✓
+- On-chain signature verification
+- Signature bound to specific transaction
+- Mathematical impossibility of transaction modification
+- Best for: High-value storage, maximum paranoia
+
+| Feature | Standard | Enhanced | Maximum |
+|---------|----------|----------|---------|
+| Quantum Resistant | ✅ | ✅ | ✅ |
+| Time-Lock Support | ❌ | ✅ | ✅ |
+| Front-Run Protected | ⚠️ Low Risk | ⚠️ Low Risk | ✅ Impossible |
+| Script Size | ~35 bytes | ~45 bytes | ~3KB |
+| Typical Fee | ~35 sats | ~45 sats | ~3000 sats |
+
+---
+
+## ⏰ Time-Locked Vaults
+
+Time-locked vaults add an extra layer of security by preventing funds from being spent until a specified time.
+
+### Use Cases
+
+1. **Inheritance Planning**
+   - Lock funds until a future date
+   - Share the secret with heirs
+   - Funds automatically become spendable
+
+2. **Forced HODL**
+   - Prevent yourself from panic selling
+   - Set a 1-year or 5-year lock
+   - No way to access funds early
+
+3. **Vesting Schedules**
+   - Create multiple vaults with staggered unlock dates
+   - Distribute tokens over time
+   - Transparent and trustless
+
+4. **Dead Man's Switch**
+   - Create vault with far-future unlock
+   - Regularly "refresh" by moving to new vault
+   - If you stop refreshing, funds become accessible
+
+### How It Works
+
+```
+Locking Script:
+<locktime> OP_CHECKLOCKTIMEVERIFY OP_DROP OP_SHA256 <hash> OP_EQUAL
+
+Example (unlock at block 900,000):
+<0x0dba0e> OP_CLTV OP_DROP OP_SHA256 <hash> OP_EQUAL
+```
+
+- **Block Height Lock** (if locktime < 500,000,000): Funds unlock at specific block
+- **Timestamp Lock** (if locktime ≥ 500,000,000): Funds unlock at Unix timestamp
+
+### Setting Up a Time-Lock
+
+1. In the vault creation screen, check **"Enable Time-Lock"**
+2. Choose lock type:
+   - **Date/Time**: Pick a calendar date
+   - **Block Height**: Enter a specific block number
+3. Generate the vault
+4. The locking script will include `OP_CHECKLOCKTIMEVERIFY`
 
 ---
 
@@ -439,7 +545,8 @@ This software is provided "as is" without warranty. While the cryptographic prim
 
 - **Ralph Merkle** - Invented Merkle trees and hash-based signatures
 - **Robert Winternitz** - Developed the Winternitz OTS scheme
-- **BSV Community** - For maintaining a blockchain that allows innovation
+- **BSV Community & Friends** - For maintaining a blockchain that allows innovation
+- **Dean 利迪恩** -  For showing the way and providing insites.
 - **Satoshi Nakamoto** - For Bitcoin
 
 ---
