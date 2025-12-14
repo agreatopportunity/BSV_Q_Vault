@@ -1,4 +1,4 @@
-# 🔐 BSV Quantum Vault v4.0
+# 🔐 BSV Quantum Vault
 
 **Quantum-Resistant Bitcoin Storage using Winternitz One-Time Signatures**
 
