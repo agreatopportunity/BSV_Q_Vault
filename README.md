@@ -57,7 +57,7 @@ TX: 1cd4c9f57691237ec263d8b2515a67e4d8797a99b027135f479a0a191e775a4c
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/bsv-quantum-vault.git
+git clone this repository
 cd bsv-quantum-vault
 
 # Install dependencies
