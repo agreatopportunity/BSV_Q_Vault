@@ -1,290 +1,179 @@
 # 🔐 BSV Quantum Vault
 
-**Quantum-Resistant Bitcoin Storage using Winternitz One-Time Signatures**
+**The First Quantum-Resistant Bitcoin Vault with Front-Run Immunity — Proven on Mainnet**
 
-> Protect your BSV from future quantum computer attacks using hash-based cryptography that remains secure even when ECDSA is broken.
+> Protect your BSV from quantum computers using WOTS-16 hash-based signatures with ECDSA covenant binding. No ECDSA exposure during spend. Mathematically secure against both quantum attacks and front-running.
 
 ![BSV](https://img.shields.io/badge/BSV-Mainnet-orange)
 ![Security](https://img.shields.io/badge/Security-Quantum%20Resistant-green)
-![Version](https://img.shields.io/badge/Version-4.0-blue)
+![Version](https://img.shields.io/badge/Version-4.6-blue)
+![Status](https://img.shields.io/badge/Status-Mainnet%20Proven-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-## 🆕 What's New
+## 🎉 Mainnet Proven
 
-- **⏰ Time-Locked Vaults**: Lock funds until a specific date or block height
-- **🛡️ Full Winternitz Mode**: Complete on-chain signature verification with transaction binding
-- **🚫 Front-Run Immunity**: Maximum security makes transaction modification mathematically impossible
-- **📊 Security Levels**: Choose between Standard, Enhanced, or Maximum protection
+**December 16, 2025** — First successful WOTS-16 covenant transaction on BSV mainnet:
+
+```
+TX: 1cd4c9f57691237ec263d8b2515a67e4d8797a99b027135f479a0a191e775a4c
+```
+
+[View on WhatsOnChain →](https://whatsonchain.com/tx/1cd4c9f57691237ec263d8b2515a67e4d8797a99b027135f479a0a191e775a4c)
+
+- **8,451 byte transaction** executed successfully
+- **5,786 byte locking script** verified on-chain
+- **68-chunk WOTS-16 signature** validated
+- **Covenant binding** prevented any front-running
+
+---
+
+## ✨ Features
+
+- **🛡️ Quantum-Resistant Storage** — Hash-based keys, no ECDSA exposure
+- **⚡ Quantum-Resistant Spend** — WOTS-16 signatures during withdrawal
+- **🔒 Front-Run Immunity** — ECDSA covenant binds signature to outputs
+- **📱 Mobile-Friendly** — Responsive design, QR code funding
+- **🌐 BSV Native** — Bare scripts, Genesis-compliant, mainnet ready
+- **🔓 Open Source** — MIT licensed, fully auditable
 
 ---
 
 ## 📋 Table of Contents
 
-- [What's New in v4.0](#-whats-new-in-v40)
-- [Security Levels Explained](#-security-levels-explained)
-- [Time-Locked Vaults](#-time-locked-vaults)
-- [Why Quantum Resistance Matters](#-why-quantum-resistance-matters)
-- [How Winternitz Signatures Work](#-how-winternitz-signatures-work)
-- [Security Model](#-security-model)
+- [Quick Start](#-quick-start)
+- [Security Levels](#-security-levels)
+- [How It Works](#-how-it-works)
 - [Installation](#-installation)
-- [Usage Guide](#-usage-guide)
-- [Technical Details](#-technical-details)
+- [API Reference](#-api-reference)
+- [Technical Specifications](#-technical-specifications)
+- [Security Model](#-security-model)
 - [FAQ](#-faq)
 
 ---
 
-## 🛡️ Security Levels Explained
+## 🚀 Quick Start
 
-BSV Quantum Vault v4.0 offers three security levels to match your needs:
+### 1. Create a Vault
 
-### Standard Security ⚡
-```
-Script: OP_SHA256 <hash> OP_EQUAL
-Size: ~35 bytes | Fee: ~35 sats
-```
-- **Quantum-resistant storage** ✓
-- Simple preimage verification
-- Lowest transaction fees
-- Best for: Regular usage, smaller amounts
+1. Select your security level (Ultimate recommended)
+2. Click **"Generate Vault"**
+3. **CRITICAL**: Save the Master Secret securely offline
+4. Note your Vault ID
 
-### Enhanced Security 🔐
-```
-Script: [TIMELOCK] OP_SHA256 <hash> OP_EQUAL
-Size: ~45 bytes | Fee: ~45 sats
-```
-- Everything in Standard, plus:
-- **Optional time-lock** for funds
-- Perfect for scheduled unlocks
-- Best for: Inheritance, vesting, forced HODL
+### 2. Fund Your Vault
 
-### Maximum Security 🛡️
-```
-Script: Full Winternitz verification with transaction binding
-Size: ~3KB | Fee: ~3000 sats
-```
-- **Complete front-run immunity** ✓
-- On-chain signature verification
-- Signature bound to specific transaction
-- Mathematical impossibility of transaction modification
-- Best for: High-value storage, maximum paranoia
+1. Click **"Continue to Fund Vault"**
+2. Scan QR code with any BSV wallet
+3. Send BSV (minimum 2,000 sats for fees)
+4. Click **"Deposit to Quantum Vault"**
 
-| Feature | Standard | Enhanced | Maximum |
-|---------|----------|----------|---------|
-| Quantum Resistant | ✅ | ✅ | ✅ |
-| Time-Lock Support | ❌ | ✅ | ✅ |
-| Front-Run Protected | ⚠️ Low Risk | ⚠️ Low Risk | ✅ Impossible |
-| Script Size | ~35 bytes | ~45 bytes | ~3KB |
-| Typical Fee | ~35 sats | ~45 sats | ~3000 sats |
+### 3. Withdraw (Sweep)
+
+1. Go to **"Access Vault"**
+2. Paste your Master Secret
+3. Enter destination address (starts with `1`)
+4. Click **"Sweep Funds"**
 
 ---
 
-## ⏰ Time-Locked Vaults
+## 🛡️ Security Levels
 
-Time-locked vaults add an extra layer of security by preventing funds from being spent until a specified time.
+| Level | Script Size | Use Case | Quantum Safe | Front-Run Safe |
+|-------|-------------|----------|--------------|----------------|
+| **Standard** | ~35 bytes | Low value, testing | ✅ Storage | ⚠️ Theoretical risk |
+| **Enhanced** | ~45 bytes | Time-locked funds | ✅ Storage | ⚠️ Theoretical risk |
+| **Maximum** | ~80 bytes | High value | ✅ Storage | ✅ ECDSA covenant |
+| **Ultimate** | ~5.7 KB | Maximum security | ✅ Full | ✅ WOTS-16 + Covenant |
 
-### Use Cases
+### Ultimate Security (Recommended)
 
-1. **Inheritance Planning**
-   - Lock funds until a future date
-   - Share the secret with heirs
-   - Funds automatically become spendable
-
-2. **Forced HODL**
-   - Prevent yourself from panic selling
-   - Set a 1-year or 5-year lock
-   - No way to access funds early
-
-3. **Vesting Schedules**
-   - Create multiple vaults with staggered unlock dates
-   - Distribute tokens over time
-   - Transparent and trustless
-
-4. **Dead Man's Switch**
-   - Create vault with far-future unlock
-   - Regularly "refresh" by moving to new vault
-   - If you stop refreshing, funds become accessible
-
-### How It Works
+The **Ultimate** level provides complete quantum resistance:
 
 ```
-Locking Script:
-<locktime> OP_CHECKLOCKTIMEVERIFY OP_DROP OP_SHA256 <hash> OP_EQUAL
-
-Example (unlock at block 900,000):
-<0x0dba0e> OP_CLTV OP_DROP OP_SHA256 <hash> OP_EQUAL
+┌─────────────────────────────────────────────────────────────┐
+│                    WOTS-16 + COVENANT                        │
+├─────────────────────────────────────────────────────────────┤
+│  • 68 signature chunks (64 message + 4 checksum)            │
+│  • 4-bit nibbles (0-15 hash iterations per chunk)           │
+│  • ECDSA covenant binds signature to hashOutputs            │
+│  • No ECDSA private key revealed during spend               │
+│  • Mathematically impossible to front-run                    │
+└─────────────────────────────────────────────────────────────┘
 ```
-
-- **Block Height Lock** (if locktime < 500,000,000): Funds unlock at specific block
-- **Timestamp Lock** (if locktime ≥ 500,000,000): Funds unlock at Unix timestamp
-
-### Setting Up a Time-Lock
-
-1. In the vault creation screen, check **"Enable Time-Lock"**
-2. Choose lock type:
-   - **Date/Time**: Pick a calendar date
-   - **Block Height**: Enter a specific block number
-3. Generate the vault
-4. The locking script will include `OP_CHECKLOCKTIMEVERIFY`
 
 ---
 
-## ⚛️ Why Quantum Resistance Matters
+## 🔬 How It Works
 
-### The Quantum Threat to Bitcoin
+### WOTS-16 Signature Scheme
 
-Bitcoin and BSV use **ECDSA (Elliptic Curve Digital Signature Algorithm)** for transaction signatures. While secure against classical computers, ECDSA is vulnerable to quantum computers running **Shor's Algorithm**.
+**Winternitz One-Time Signatures** rely on the one-way property of hash functions rather than elliptic curve math.
 
-| Attack Type | Classical Computer | Quantum Computer |
-|-------------|-------------------|------------------|
-| Break ECDSA (256-bit) | 2^128 operations (impossible) | ~2000 logical qubits (feasible) |
-| Break SHA-256 | 2^256 operations (impossible) | 2^128 operations (still very hard) |
-
-**Key Insight**: Hash functions like SHA-256 remain secure against quantum attacks (Grover's algorithm only provides a quadratic speedup), while ECDSA becomes completely broken.
-
-### When Will This Matter?
-
-- **Current quantum computers**: ~1,000 noisy qubits (not a threat yet)
-- **Estimated threat timeline**: 10-20 years for cryptographically relevant quantum computers
-- **The problem**: Funds stored TODAY can be attacked in the FUTURE
-
-If you're holding BSV for long-term storage, quantum resistance matters **now**.
-
----
-
-## 🔑 How Winternitz Signatures Work
-
-### The Basic Idea
-
-Instead of relying on the mathematical hardness of elliptic curves (which quantum computers can solve), Winternitz One-Time Signatures (WOTS) rely on the **one-way property of hash functions**.
-
-### Step-by-Step Explanation
-
-#### 1. Key Generation
+#### Key Generation
 
 ```
-Private Key: 32 random 32-byte values (1024 bytes total)
-   k[0], k[1], k[2], ... k[31]
-
-Public Key: Hash each private key 256 times
-   P[i] = SHA256^256(k[i])  (apply SHA256 256 times)
-   
-Public Key Hash: SHA256(P[0] || P[1] || ... || P[31])
+1. Generate 68 random 32-byte scalars (private key)
+2. For each scalar, hash iteratively 16 times (WOTS-16)
+3. Final hashes become public key commitments
+4. Embed all commitments in locking script
 ```
 
-#### 2. Locking Script (Stored on Blockchain)
+#### Signing
 
 ```
-OP_SHA256 <public_key_hash> OP_EQUAL
+Message: 256-bit hash of transaction outputs
+Split into: 64 nibbles (4 bits each) + 4 checksum nibbles
+
+For each nibble value N (0-15):
+  signature_chunk = SHA256^N(private_scalar)
 ```
 
-To spend, you must provide data that hashes to the public key hash.
+#### Verification (On-Chain)
 
-#### 3. Signing a Message
-
-For each byte `m[i]` of the message (0-255):
-```
-signature[i] = SHA256^(256 - m[i])(k[i])
-```
-
-If `m[i] = 0`, hash 256 times (equals public key)
-If `m[i] = 255`, hash 1 time
-If `m[i] = 100`, hash 156 times
-
-#### 4. Verification
-
-Anyone can verify by completing the hash chain:
 ```
 For each signature chunk:
-   SHA256^(m[i])(signature[i]) should equal P[i]
+  remaining_hashes = 15 - nibble_value
+  expected = SHA256^remaining(signature_chunk)
+  Verify: expected == public_commitment
 ```
 
-### Why This Is Quantum Resistant
+### Covenant Protection
 
-| Property | ECDSA | Winternitz |
-|----------|-------|------------|
-| Security basis | Discrete logarithm | One-way hash functions |
-| Quantum vulnerability | Shor's algorithm breaks it | Grover gives only 2x speedup |
-| Post-quantum security | ❌ None | ✅ 128+ bits |
+The ECDSA covenant ensures the WOTS-16 signature is bound to specific outputs:
 
-**Quantum computers cannot reverse hash functions efficiently.** Even with Grover's algorithm, breaking SHA-256 still requires 2^128 operations—computationally infeasible.
+```
+┌─────────────────────────────────────────────────────────────┐
+│  1. WOTS-16 signs: SHA256(transaction_outputs)              │
+│  2. ECDSA covenant verifies the binding on-chain            │
+│  3. Attacker with preimage CANNOT redirect funds            │
+│  4. Output destinations are cryptographically locked         │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 🛡️ Security Model
-
-### Protection While Funds Are in Vault
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    QUANTUM VAULT                         │
-│                                                          │
-│   Locking Script: OP_SHA256 <hash> OP_EQUAL             │
-│                                                          │
-│   • No public key exposed on blockchain                  │
-│   • Only a hash commitment is visible                    │
-│   • Quantum computer cannot derive spending key          │
-│   • Protected by SHA-256 (quantum-resistant)            │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
-```
-
-**While your funds sit in the vault:**
-- No ECDSA public key is exposed
-- Only a SHA-256 hash is on-chain
-- Quantum computers cannot reverse SHA-256 to find the preimage
-- Your funds are safe indefinitely
-
-### Protection During Spending (Anti-Front-Running)
-
-When you broadcast a transaction to spend from the vault, you reveal the preimage. A sophisticated attacker (especially with a quantum computer) could potentially:
-
-1. See your transaction in the mempool
-2. Extract the revealed preimage
-3. Create their own transaction stealing the funds
-4. Get their transaction mined first
-
-**Our Protection: Transaction-Bound Signatures**
-
-The "standard" security level uses a simple preimage scheme. For maximum protection against mempool front-running, use the "maximum" security level which binds the signature to a specific transaction:
-
-```
-Standard:  OP_SHA256 <public_key_hash> OP_EQUAL
-           └─ Reveals preimage, theoretically front-runnable
-
-Maximum:   Full Winternitz with OP_PUSH_TX covenant
-           └─ Signature is bound to specific transaction
-           └─ Different transaction = invalid signature
-           └─ Front-running becomes mathematically impossible
-```
-
-### Security Levels
-
-| Level | Script Size | Protection | Use Case |
-|-------|-------------|------------|----------|
-| Standard | ~35 bytes | Quantum-resistant storage | Long-term HODL |
-| Maximum | ~1100 bytes | + Front-run protection | High-value transfers |
-
----
-
-## 📦 Installation
+## 💻 Installation
 
 ### Prerequisites
 
-- **Node.js** 16.0 or higher
-- **npm** (comes with Node.js)
-- **BSV** for testing (mainnet)
+- Node.js 18+
+- npm or yarn
 
-### Quick Start
+### Setup
 
 ```bash
-# Clone or download the project
+# Clone repository
+git clone https://github.com/your-repo/bsv-quantum-vault.git
 cd bsv-quantum-vault
 
 # Install dependencies
 npm install
 
-# Start the server
-npm start
+# Start server
+node server.js
+
+# Open browser
+open http://localhost:3000
 ```
 
 ### Dependencies
@@ -292,185 +181,169 @@ npm start
 ```json
 {
   "dependencies": {
-    "axios": "^1.6.0",
-    "bsv": "^1.5.6",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "bsv": "^1.5.6"
   }
 }
 ```
 
-### Verify Installation
+---
 
-After running `npm start`, you should see:
+## 📡 API Reference
+
+### Create Vault
 
 ```
-✅ BSV library loaded - transactions will be signed correctly
-
-╔═══════════════════════════════════════════════════════════════╗
-║        BSV QUANTUM VAULT - Production Server v3.0             ║
-║        Quantum-Resistant • BSV Native • No P2SH               ║
-╠═══════════════════════════════════════════════════════════════╣
-║  Local:     http://localhost:4000                             ║
-╠═══════════════════════════════════════════════════════════════╣
-║  Security:  Winternitz One-Time Signatures                    ║
-║  Key Size:  1024 bytes (32 × 32-byte scalars)                 ║
-║  Hash:      HASH256 (256 iterations per chunk)                ║
-║  Output:    Bare script (BSV Genesis compliant)               ║
-╚═══════════════════════════════════════════════════════════════╝
+GET /api/create?security={level}
 ```
 
-Open your browser to `http://localhost:4000`
+**Parameters:**
+- `security`: `standard` | `enhanced` | `maximum` | `ultimate`
+
+**Response:**
+```json
+{
+  "success": true,
+  "vaultId": "qv1Z2oMt92S92CteWKwMgLg1XNLFXKre",
+  "scriptHash": "abc123...",
+  "lockingScript": "a820...",
+  "masterSecret": "QVSECRET:...",
+  "security": "ultimate"
+}
+```
+
+### Check Balance
+
+```
+POST /api/balance
+Content-Type: application/json
+
+{
+  "secret": "QVSECRET:..."
+}
+```
+
+### Sweep Vault
+
+```
+POST /api/sweep
+Content-Type: application/json
+
+{
+  "secret": "QVSECRET:...",
+  "destinationAddress": "1ABC..."
+}
+```
+
+### Generate Funding Address
+
+```
+POST /api/generate-funding-address
+Content-Type: application/json
+
+{
+  "vaultSecret": "QVSECRET:..."
+}
+```
+
+### Deposit to Vault
+
+```
+POST /api/deposit-to-vault
+Content-Type: application/json
+
+{
+  "fundingWIF": "L5...",
+  "vaultSecret": "QVSECRET:..."
+}
+```
 
 ---
 
-## 📖 Usage Guide
+## 📊 Technical Specifications
 
-### Step 1: Create a Quantum Vault
+### Transaction Metrics (Ultimate Security)
 
-1. Click **"Generate New Vault"**
-2. **CRITICAL**: Save the **Master Secret** securely!
-   - This is the ONLY way to recover your funds
-   - Store it offline (paper, encrypted USB, etc.)
-   - Never share it with anyone
-3. Note your **Vault ID** (starts with `qv1Z...`)
+| Metric | Value |
+|--------|-------|
+| Locking Script | ~5,786 bytes |
+| Unlocking Script | ~2,700 bytes |
+| Total TX Size | ~8,500 bytes |
+| Signature Chunks | 68 |
+| Bits per Chunk | 4 (WOTS-16) |
+| Key Entropy | 2,176 bytes |
+| Hash Algorithm | SHA-256 |
+| Typical Fee | ~8,500 sats |
 
-### Step 2: Fund Your Vault
+### Script Structure
 
-Two options:
-
-#### Option A: Quick Fund (Recommended)
-1. Click **"Continue to Fund Vault"**
-2. Scan the QR code with any BSV wallet
-3. Send any amount of BSV
-4. Wait for balance to appear (~10 seconds)
-5. Click **"Deposit to Quantum Vault"**
-
-#### Option B: Manual Deposit
-1. Copy the **Locking Script** from vault details
-2. Use external tools to create a bare script output
-3. The output script should be: `OP_SHA256 <hash> OP_EQUAL`
-
-### Step 3: Check Balance
-
-1. Go to **"Access Vault"**
-2. Enter your **Master Secret**
-3. Click **"Check Balance"**
-4. View your quantum-secured balance
-
-### Step 4: Withdraw (Sweep)
-
-1. Access your vault with the Master Secret
-2. Enter a destination BSV address (starts with `1`)
-3. Click **"Sweep Funds"**
-4. Transaction broadcasts with Winternitz signature
-5. Funds arrive at destination (regular BSV address)
-
-### Changing Your Mind
-
-If you funded the temporary address but want to send elsewhere:
-1. Use **"Send to Different Address"** option
-2. Enter any BSV address
-3. Funds are sent directly (NOT to quantum vault)
-
----
-
-## 🔧 Technical Details
-
-### Architecture
-
+**Locking Script (Ultimate):**
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      BSV Quantum Vault                       │
-├─────────────────────────────────────────────────────────────┤
-│  Frontend (index.html + app.js)                             │
-│    • Vault creation UI                                       │
-│    • QR code funding                                         │
-│    • Balance checking                                        │
-│    • Sweep interface                                         │
-├─────────────────────────────────────────────────────────────┤
-│  Backend (server.js)                                         │
-│    • REST API endpoints                                      │
-│    • Transaction building                                    │
-│    • Multi-provider broadcasting                             │
-│    • UTXO management                                         │
-├─────────────────────────────────────────────────────────────┤
-│  Cryptography (winternitz.js)                               │
-│    • Winternitz key generation                               │
-│    • Locking script creation                                 │
-│    • Signature generation                                    │
-│    • Vault restore from secret                               │
-└─────────────────────────────────────────────────────────────┘
+[68x WOTS-16 verification blocks]
+<covenant_pubkey> OP_CHECKSIGVERIFY OP_DROP OP_TRUE
 ```
 
-### API Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/create` | GET | Create new quantum vault |
-| `/api/verify` | POST | Verify a master secret |
-| `/api/balance` | POST | Check vault balance |
-| `/api/sweep` | POST | Withdraw all funds |
-| `/api/generate-funding-address` | POST | Create temporary P2PKH for funding |
-| `/api/check-funding` | POST | Check funding address balance |
-| `/api/deposit-to-vault` | POST | Move funds to quantum vault |
-| `/api/send-from-funding` | POST | Send to different address |
-
-### Transaction Flow
-
+**Each WOTS-16 Block:**
 ```
-1. FUNDING (User → Temporary Address)
-   ┌──────────┐    Standard BSV    ┌──────────────────┐
-   │ Any BSV  │ ───────────────────│ Temporary P2PKH  │
-   │ Wallet   │    Transaction     │ Address          │
-   └──────────┘                    └──────────────────┘
-
-2. DEPOSIT (Temporary → Quantum Vault)
-   ┌──────────────────┐   P2PKH→Bare Script   ┌───────────────┐
-   │ Temporary P2PKH  │ ──────────────────────│ Quantum Vault │
-   │ Address          │   ECDSA Signature     │ (Bare Script) │
-   └──────────────────┘                       └───────────────┘
-
-3. SWEEP (Quantum Vault → Destination)
-   ┌───────────────┐   Bare Script→P2PKH   ┌─────────────┐
-   │ Quantum Vault │ ──────────────────────│ Destination │
-   │ (Bare Script) │   WOTS Preimage       │ Address     │
-   └───────────────┘                       └─────────────┘
-```
-
-### Broadcast Providers
-
-Transactions are broadcast through multiple providers for reliability:
-
-1. **TAAL** (Primary) - Merchant API with high reliability
-2. **GorillaPool** - Alternative BSV infrastructure
-3. **WhatsOnChain** - Fallback option
-
-### Script Formats
-
-**Locking Script (P2PKH equivalent for quantum vault):**
-```
-OP_SHA256 <32-byte-hash> OP_EQUAL
-Hex: a820<hash>87
-```
-
-**Unlocking Script:**
-```
-<1024-byte-preimage>
+OP_SWAP OP_DUP
+OP_2 OP_MOD OP_IF OP_SWAP OP_SHA256 OP_SWAP OP_ENDIF
+OP_DUP OP_2 OP_DIV OP_2 OP_MOD OP_IF OP_SWAP OP_SHA256 OP_SHA256 OP_SWAP OP_ENDIF
+OP_DUP OP_4 OP_DIV OP_2 OP_MOD OP_IF OP_SWAP [4x OP_SHA256] OP_SWAP OP_ENDIF
+OP_DUP OP_8 OP_DIV OP_2 OP_MOD OP_IF OP_SWAP [8x OP_SHA256] OP_SWAP OP_ENDIF
+OP_DROP <expected_hash> OP_EQUALVERIFY
 ```
 
 ### File Structure
 
 ```
 bsv-quantum-vault/
-├── server.js        # Express server + API
-├── winternitz.js    # Cryptographic core
-├── index.html       # Main UI
-├── app.js           # Frontend JavaScript
-├── styles.css       # Styling
-├── package.json     # Dependencies
-├── test.js          # Test suite
-└── README.md        # This file
+├── server.js           # Express API server
+├── winternitz.js       # WOTS-16 cryptography
+├── index.html          # Web interface
+├── app.js              # Frontend logic
+├── styles.css          # Responsive styles
+├── package.json        # Dependencies
+└── README.md           # Documentation
 ```
+
+---
+
+## 🔒 Security Model
+
+### Threat Analysis
+
+| Threat | Protection |
+|--------|------------|
+| Quantum computer breaks ECDSA | ✅ No ECDSA during spend |
+| Mempool front-running | ✅ Covenant binds outputs |
+| Preimage theft | ✅ Outputs predetermined |
+| Replay attack | ✅ One-time signatures |
+| Hash collision | ✅ SHA-256 (2^128 quantum) |
+
+### What's Protected
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  WHILE FUNDS ARE IN VAULT:                                   │
+│    • No public key exposed                                   │
+│    • Only hash commitments on-chain                          │
+│    • Quantum computers cannot derive keys                    │
+├─────────────────────────────────────────────────────────────┤
+│  DURING WITHDRAWAL:                                          │
+│    • WOTS-16 preimages revealed (not ECDSA keys)            │
+│    • Covenant locks destination addresses                    │
+│    • Attackers cannot redirect funds                         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Important Warnings
+
+⚠️ **One-Time Use**: WOTS signatures can only be used ONCE. Never reuse a vault after sweeping.
+
+⚠️ **Master Secret**: If lost, funds are PERMANENTLY inaccessible. No recovery possible.
+
+⚠️ **Large Transactions**: Ultimate security requires ~8.5KB transactions with corresponding fees.
 
 ---
 
@@ -478,87 +351,90 @@ bsv-quantum-vault/
 
 ### Is this actually quantum-resistant?
 
-**Yes.** The security relies on SHA-256, which is considered quantum-resistant. While Grover's algorithm can theoretically speed up hash collision finding, it only provides a quadratic speedup (2^256 → 2^128), which is still computationally infeasible.
+**Yes.** WOTS-16 security relies on SHA-256's one-way property. Grover's algorithm provides only quadratic speedup (2^256 → 2^128), which remains computationally infeasible.
 
-### Why not just use a quantum-resistant blockchain?
+### When will quantum computers be a threat?
 
-Quantum-resistant blockchains don't exist at scale yet. BSV Quantum Vault lets you protect your funds **today** on an established, liquid blockchain while maintaining compatibility with the existing ecosystem.
+Current estimates: 10-20 years for cryptographically relevant quantum computers. But funds stored TODAY can be attacked in the FUTURE. Protect long-term holdings now.
 
-### What happens if I lose my Master Secret?
+### Why not use a quantum-resistant blockchain?
 
-**Your funds are lost forever.** The Master Secret is the ONLY way to derive the spending key. There is no recovery mechanism. Store it safely!
+No production quantum-resistant blockchain exists at scale. BSV Quantum Vault protects your funds TODAY on an established, liquid network.
 
-### Can miners front-run my withdrawal transaction?
+### Can miners front-run my withdrawal?
 
-With the "standard" security level, there's a theoretical risk during the brief window when your transaction is in the mempool. However:
-- BSV has fast block times (~10 minutes average, often faster)
-- Miners would need to detect, analyze, and replace your transaction in seconds
-- The "maximum" security level with full Winternitz signatures makes front-running mathematically impossible
+**Not with Ultimate security.** The ECDSA covenant binds the WOTS-16 signature to specific outputs. Even with the preimage, attackers cannot redirect funds.
 
-### Why does the vault use bare scripts instead of P2SH?
+### Why bare scripts instead of P2SH?
 
-BSV deprecated P2SH (Pay-to-Script-Hash) in the Genesis upgrade (February 2020). Bare scripts are the BSV-native way to create custom locking conditions. They're fully supported and have no size limits on BSV.
+BSV deprecated P2SH in the Genesis upgrade (February 2020). Bare scripts are BSV-native and support unlimited script sizes.
 
-### How much does it cost?
+### What does it cost?
 
-- **Deposit transaction**: ~200 bytes (~200 sats at 1 sat/byte)
-- **Sweep transaction**: ~1100 bytes (~1100 sats at 1 sat/byte)
-- Total cost: Less than $0.01 USD typically
+| Action | Size | Fee (~1 sat/byte) |
+|--------|------|-------------------|
+| Deposit | ~200 bytes | ~200 sats |
+| Sweep (Ultimate) | ~8,500 bytes | ~8,500 sats |
 
-### Can I use this for mainnet?
+Total: Less than $0.10 USD typically.
 
-**Yes!** This is production-ready and works on BSV mainnet. Always test with small amounts first.
+### Is this production-ready?
 
-### Is the code open source?
-
-Yes, MIT licensed. You can audit, modify, and deploy your own instance.
+**Yes.** Successfully tested on BSV mainnet (December 16, 2025). Always test with small amounts first.
 
 ---
 
-## 🚀 Roadmap
+## 🗺️ Roadmap
 
+- [x] WOTS-16 on-chain verification
+- [x] ECDSA covenant binding
+- [x] Mainnet deployment
+- [x] Mobile-responsive UI
 - [ ] Multi-signature quantum vaults
 - [ ] Hardware wallet integration
-- [ ] Time-locked quantum vaults
-- [ ] Full Winternitz with OP_PUSH_TX for maximum security
-- [ ] Mobile app
-- [ ] Batch operations for multiple UTXOs
+- [ ] Batch operations
+- [ ] Mobile native app
 
 ---
 
 ## 📜 License
 
-MIT License - See LICENSE file for details.
+MIT License — Free to use, modify, and distribute.
 
 ---
 
 ## ⚠️ Disclaimer
 
-This software is provided "as is" without warranty. While the cryptographic primitives are well-established, this is experimental software. Always:
+This software is provided "as is" without warranty. While cryptographic primitives are well-established, this is experimental software. Always:
+
 - Test with small amounts first
-- Keep secure backups of your Master Secret
-- Understand the technology before using it for significant value
+- Keep secure backups of Master Secret
+- Understand the technology before storing significant value
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **Ralph Merkle** - Invented Merkle trees and hash-based signatures
-- **Robert Winternitz** - Developed the Winternitz OTS scheme
-- **BSV Community & Friends** - For maintaining a blockchain that allows innovation
-- **Dean 利迪恩** -  For showing the way and providing insites.
-- **Satoshi Nakamoto** - For Bitcoin
+- **Ralph Merkle** — Hash-based signature foundations
+- **Robert Winternitz** — WOTS scheme development
+- **BSV Community** — Maintaining unbounded Bitcoin
+- **Dean 利迪恩** — Guidance and insights
+- **Satoshi Nakamoto** — For Bitcoin
 
 ---
+
+<div align="center">
 
 **Made with ❤️ for a quantum-safe future**
 
 ```
-    ____  _______    __   ____  __  _____    _   ____________  ____  ___
-   / __ )/ ___/ |  / /  / __ \/ / / /   |  / | / /_  __/ / / / /  |/  /
-  / __  |\__ \| | / /  / / / / / / / /| | /  |/ / / / / / / / / /|_/ / 
- / /_/ /___/ /| |/ /  / /_/ / /_/ / ___ |/ /|  / / / / /_/ / /  /  /  
+ ____  _______    __   ____  __  _____    _   ____________  ____  ___
+/ __ )/ ___/ |  / /  / __ \/ / / /   |  / | / /_  __/ / / / /  |/  /
+/ __  |\__ \| | / /  / / / / / / / /| | /  |/ / / / / / / / / /|_/ / 
+/ /_/ /___/ /| |/ /  / /_/ / /_/ / ___ |/ /|  / / / / /_/ / /  /  /  
 /_____//____/ |___/   \___\_\____/_/  |_/_/ |_/ /_/  \____/_/_/  /_/   
-                                                                       
-              QUANTUM VAULT - Securing the Future
+
+          QUANTUM VAULT — Securing the Future
 ```
+
+</div>
