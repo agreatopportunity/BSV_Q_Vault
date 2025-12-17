@@ -1,7 +1,7 @@
 {
   "name": "bsv-quantum-vault",
-  "version": "3.0.0",
-  "description": "Quantum-resistant Bitcoin vault using Winternitz One-Time Signatures - BSV Native (No P2SH)",
+  "version": "1.0.0",
+  "description": "Quantum-resistant Bitcoin vault using WOTS-16 One-Time Signatures with covenant protection - BSV Mainnet Proven",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -13,9 +13,11 @@
     "bsv",
     "quantum",
     "winternitz",
+    "wots",
     "cryptography",
     "post-quantum",
-    "hash-based-signatures"
+    "hash-based-signatures",
+    "covenant"
   ],
   "author": "BSV Quantum Vault",
   "license": "MIT",
