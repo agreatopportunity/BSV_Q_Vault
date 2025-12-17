@@ -46,7 +46,7 @@ try {
 }
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 // =============================================================================
 // CONFIGURATION
@@ -902,7 +902,6 @@ app.post('/api/generate-funding-address', async (req, res) => {
 
 /**
  * POST /api/check-funding - Check balance of funding address
- * THIS WAS THE MISSING ENDPOINT!
  */
 app.post('/api/check-funding', async (req, res) => {
     try {
@@ -1045,7 +1044,6 @@ app.post('/api/send-from-funding', async (req, res) => {
 
 /**
  * POST /api/deposit-to-vault - Deposit from funding address to vault
- * FIXED: Accepts vaultSecret parameter as frontend expects
  */
 app.post('/api/deposit-to-vault', async (req, res) => {
     try {
@@ -1313,14 +1311,14 @@ app.use((err, req, res, next) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log('');
     console.log('╔═══════════════════════════════════════════════════════════════╗');
-    console.log('║        BSV QUANTUM VAULT - Server v4.6 (COMPLETE)             ║');
+    console.log('║        BSV QUANTUM VAULT - Server                             ║');
     console.log('╠═══════════════════════════════════════════════════════════════╣');
     console.log(`║  Local:  http://localhost:${PORT}                                 ║`);
     console.log('╠═══════════════════════════════════════════════════════════════╣');
     console.log('║  ✅ /api/check-funding - Shows deposit button when funded      ║');
     console.log('║  ✅ /api/deposit-to-vault - Accepts vaultSecret               ║');
     console.log('║  ✅ /api/verify - Returns derived for frontend                ║');
-    console.log('║  ✅ All endpoints frontend-compatible                         ║');
+    console.log('║  ✅ Quantum                                                   ║');
     console.log('╚═══════════════════════════════════════════════════════════════╝');
     console.log('');
 });
