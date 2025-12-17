@@ -1,12 +1,12 @@
 # 🔐 BSV Quantum Vault
 
-**The First Quantum-Resistant Bitcoin Vault with Front-Run Immunity — Proven on Mainnet**
+**The First Quantum-Resistant Bitcoin Vault with Front-Run Immunity Proven on Mainnet**
 
-> Protect your BSV from quantum computers using WOTS-16 hash-based signatures with ECDSA covenant binding. No ECDSA exposure during spend. Mathematically secure against both quantum attacks and front-running.
+> Protect your BSV from quantum computers using WOTS-16 hash-based signatures with ECDSA covenant binding. No ECDSA exposure during spend. Mathematically secure against both quantum attacks and front running.
 
 ![BSV](https://img.shields.io/badge/BSV-Mainnet-orange)
 ![Security](https://img.shields.io/badge/Security-Quantum%20Resistant-green)
-![Version](https://img.shields.io/badge/Version-4.6-blue)
+![Version](https://img.shields.io/badge/Version-1-blue)
 ![Status](https://img.shields.io/badge/Status-Mainnet%20Proven-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
@@ -155,7 +155,7 @@ Script: <locktime> OP_CHECKLOCKTIMEVERIFY OP_DROP OP_SHA256 <hash> OP_EQUAL
 ```
 Script: [68× WOTS-16 verification] <pubkey> OP_CHECKSIGVERIFY OP_DROP OP_TRUE
 ```
-- **Full WOTS-16 on-chain signature verification**
+- **Full WOTS-16 on chain signature verification**
 - 68 signature chunks (64 message + 4 checksum nibbles)
 - ECDSA covenant binds outputs — mathematically impossible to front-run
 - No ECDSA private key revealed during spend
@@ -167,7 +167,7 @@ Script: [68× WOTS-16 verification] <pubkey> OP_CHECKSIGVERIFY OP_DROP OP_TRUE
 
 ### WOTS-16 Signature Scheme
 
-Winternitz One-Time Signatures rely on **hash function security**, not elliptic curves.
+Winternitz One Time Signatures rely on **hash function security**, not elliptic curves.
 
 #### Key Generation
 ```
@@ -201,7 +201,7 @@ The ECDSA covenant ensures the WOTS-16 signature cannot be stolen:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  1. WOTS-16 signature signs SHA256(outputs)                 │
-│  2. ECDSA covenant verifies binding on-chain                │
+│  2. ECDSA covenant verifies binding on chain                │
 │  3. Even if attacker sees signature in mempool:             │
 │     → Cannot change outputs (signature won't verify)        │
 │     → Cannot redirect funds                                 │
@@ -312,7 +312,7 @@ bsv-quantum-vault/
 | Quantum breaks ECDSA | ✅ No ECDSA key revealed during spend |
 | Mempool front-running | ✅ Covenant binds outputs |
 | Preimage theft | ✅ Outputs are predetermined |
-| Replay attacks | ✅ One-time signatures |
+| Replay attacks | ✅ One time signatures |
 | Hash collision | ✅ SHA-256 requires 2^128 operations (quantum) |
 
 ### Security Timeline
@@ -335,7 +335,7 @@ DURING SPEND:
 
 ## ⚠️ Important Warnings
 
-1. **ONE-TIME USE**: WOTS signatures can only be used ONCE. After sweeping, the vault is permanently spent. Never send more funds to a used vault.
+1. **ONE TIME USE**: WOTS signatures can only be used ONCE. After sweeping, the vault is permanently spent. Never send more funds to a used vault.
 
 2. **MASTER SECRET**: If lost, funds are PERMANENTLY inaccessible. There is NO recovery mechanism. Store it:
    - Offline (paper, encrypted USB)
@@ -350,13 +350,13 @@ DURING SPEND:
 
 ## ❓ FAQ
 
-### Is this actually quantum-resistant?
+### Is this actually quantum resistant?
 
 **Yes.** WOTS-16 security relies on SHA-256's one-way property. Grover's algorithm (quantum) only provides quadratic speedup: 2^256 → 2^128 operations. This remains computationally infeasible.
 
 ### When will quantum computers threaten Bitcoin?
 
-Estimates range 10-20 years for cryptographically relevant quantum computers. However, coins stored TODAY can be attacked TOMORROW once quantum computers exist. Protect long-term holdings now.
+Estimates range 10-20 years for cryptographically relevant quantum computers. However, coins stored TODAY can be attacked TOMORROW once quantum computers exist. Protect long term holdings now.
 
 ### Can miners front-run my withdrawal?
 
@@ -364,7 +364,7 @@ Estimates range 10-20 years for cryptographically relevant quantum computers. Ho
 
 ### Why bare scripts instead of P2SH?
 
-BSV deprecated P2SH in the Genesis upgrade (February 2020). Bare scripts are BSV-native and support unlimited script sizes, which is necessary for the ~5.7KB Ultimate locking script.
+BSV deprecated P2SH in the Genesis upgrade (February 2020). Bare scripts are BSV native and support unlimited script sizes, which is necessary for the ~5.7KB Ultimate locking script.
 
 ### What does it cost?
 
@@ -382,7 +382,7 @@ At current BSV prices, Ultimate sweep costs less than $0.10 USD.
 
 ---
 
-## 🗺️ Roadmap
+## 🗺️ Roadmap for Devs
 
 - [x] WOTS-16 on-chain verification
 - [x] ECDSA covenant binding  
@@ -398,13 +398,13 @@ At current BSV prices, Ultimate sweep costs less than $0.10 USD.
 
 ## 📜 License
 
-MIT License — Free to use, modify, and distribute.
+MIT License, Free to use, modify, and distribute.
 
 ---
 
 ## ⚠️ Disclaimer
 
-This software is provided "as is" without warranty of any kind. While the cryptographic primitives (SHA-256, WOTS) are well-established, this is experimental software. Always:
+This software is provided "as is" without warranty of any kind. While the cryptographic primitives (SHA-256, WOTS) are well established, this is experimental software. Always:
 
 - Test with small amounts first
 - Keep secure backups of your Master Secret
@@ -425,7 +425,7 @@ This software is provided "as is" without warranty of any kind. While the crypto
 
 <div align="center">
 
-**Made with ❤️ for a quantum-safe future**
+**Made with ❤️ for a quantum safe future**
 
 ```
  ____  _______    __   ____  __  _____    _   ____________  ____  ___
